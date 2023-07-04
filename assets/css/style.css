@@ -16,6 +16,11 @@ border:5px solid rgb(78, 102, 103);
 padding: 5px 20px;
 }
 
+#layout {
+  display: flex;
+
+}
+
 #container {
   display: flex;
   justify-content: space-between;
@@ -24,4 +29,8 @@ padding: 5px 20px;
 .day {
   background-color: aqua;
   padding: 5px 20px;
+}
+
+#right {
+  width: 100%;
 }
