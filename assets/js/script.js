@@ -28,6 +28,8 @@ function getWeatherForCity(cityName) {
   cityHeadingElement.textContent = cityName;
 
   var tempElement = document.querySelector("#city .temp");
+  var humidityElement = document.querySelector("#city .humidity");
+  var windElement = document.querySelector("#city .wind");
 
 
   getCurrentWeatherPromise(cityName)
@@ -38,6 +40,8 @@ function getWeatherForCity(cityName) {
       console.log(data);
 
       tempElement.textContent = data.main.temp + " °C";
+      humidityElement.textContent = data.main.humidity + " %";
+      windElement.textContent = data.wind.speed + " km/h";
     });
 }
 
