@@ -40,9 +40,16 @@ padding: 5px 20px;
   width: 80%;
 }
 
-button {
+button, input {
   display: block;
   width: 100%;
   margin: 20px 0px;
-  padding: 10px 0;
+  padding: 10px;
+  font-size: 120%;
+  font-weight: bold;
+  border-radius: 9px;
+}
+
+.city-button {
+  background-color: rgb(172, 167, 167);
 }
