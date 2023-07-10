@@ -149,5 +149,11 @@ cityButtons.forEach(element => {
   element.addEventListener("click", cityButtonHandler);
 });
 
+var cities = getMyStorage();
+for (var i = 0; i < cities.length; i++) {
+  var buttonEl = makeCityButtonElement(cities[i]);
+  formEl.appendChild(buttonEl);
+}
+
 getWeatherForCity("Toronto");
 
