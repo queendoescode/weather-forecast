@@ -8,7 +8,8 @@ var apiUrlFiveDay = "https://api.openweathermap.org/data/2.5/forecast";
 var apiUrlCurrent = "https://api.openweathermap.org/data/2.5/weather";
 
 var searchBtn = document.querySelector("#search-button");
-var inputEl = document.querySelector("#city-name")
+var inputEl = document.querySelector("#city-name");
+var cityButtons = document.querySelectorAll(".city-button");
 
 function getFiveDayWeatherPromise(cityName) {
   return fetch(`${apiUrlFiveDay}?appid=${apiKey}&q=${cityName}&units=metric`, {
@@ -60,6 +61,15 @@ function citySearch(event) {
 }
 
 searchBtn.addEventListener("click", citySearch);
+
+function cityButtonHandler(event) {
+  event.preventDefault();
+  getWeatherForCity(event.target.textContent);
+}
+
+cityButtons.forEach(element => {
+  element.addEventListener("click", cityButtonHandler);
+});
 
 getWeatherForCity("Toronto");
 
