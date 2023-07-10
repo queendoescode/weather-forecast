@@ -43,9 +43,9 @@ padding: 5px 20px;
 button, input {
   display: block;
   width: 100%;
-  margin: 20px 0px;
-  padding: 10px;
-  font-size: 120%;
+  margin: 8px 0px;
+  padding: 8px;
+  font-size: 100%;
   font-weight: bold;
   border-radius: 9px;
 }
