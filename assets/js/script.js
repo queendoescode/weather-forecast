@@ -7,6 +7,9 @@ var apiUrlFiveDay = "https://api.openweathermap.org/data/2.5/forecast";
 
 var apiUrlCurrent = "https://api.openweathermap.org/data/2.5/weather";
 
+var searchBtn = document.querySelector("#search-button");
+var inputEl = document.querySelector("#city-name")
+
 function getFiveDayWeatherPromise(cityName) {
   return fetch(`${apiUrlFiveDay}?appid=${apiKey}&q=${cityName}&units=metric`, {
     method: 'GET', //GET is the default.
@@ -43,7 +46,20 @@ function getWeatherForCity(cityName) {
       humidityElement.textContent = data.main.humidity + " %";
       windElement.textContent = data.wind.speed + " km/h";
     });
+
+    getFiveDayWeatherPromise(cityName)
+      .then(response => response.json())
+      .then(data => console.log(data));
 }
+
+function citySearch(event) {
+  event.preventDefault();
+
+  var cityName = inputEl.value;
+  getWeatherForCity(cityName);
+}
+
+searchBtn.addEventListener("click", citySearch);
 
 getWeatherForCity("Toronto");
 
