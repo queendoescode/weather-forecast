@@ -8,6 +8,7 @@ var apiUrlFiveDay = "https://api.openweathermap.org/data/2.5/forecast";
 var apiUrlCurrent = "https://api.openweathermap.org/data/2.5/weather";
 
 var searchBtn = document.querySelector("#search-button");
+var searchError = document.querySelector("#search-error");
 var inputEl = document.querySelector("#city-name");
 var cityButtons = document.querySelectorAll(".city-button");
 
@@ -29,7 +30,6 @@ function getCurrentWeatherPromise(cityName) {
 
 function getWeatherForCity(cityName) {
   var cityHeadingElement = document.querySelector("#city h2");
-  cityHeadingElement.textContent = cityName;
 
   var tempElement = document.querySelector("#city .temp");
   var humidityElement = document.querySelector("#city .humidity");
@@ -38,15 +38,20 @@ function getWeatherForCity(cityName) {
 
   getCurrentWeatherPromise(cityName)
     .then(function (response) {
-      // This method returns a Promise as well! So we will "chain" it by returning it 
-      return response.json(); 
-    }).then( data => {
-      console.log(data);
-
-      tempElement.textContent = data.main.temp + " °C";
-      humidityElement.textContent = data.main.humidity + " %";
-      windElement.textContent = data.wind.speed + " km/h";
-    });
+        if (response.ok) {
+          return response.json().then( data => {
+            cityHeadingElement.textContent = cityName;
+            
+            tempElement.textContent = data.main.temp + " °C";
+            humidityElement.textContent = data.main.humidity + " %";
+            windElement.textContent = data.wind.speed + " km/h";
+            searchError.textContent = "";
+            inputEl.value = "";
+          })
+        } else {
+          searchError.textContent = `${cityName} was not found`;
+        }
+      });
 
     getFiveDayWeatherPromise(cityName)
       .then(response => response.json())
