@@ -20,6 +20,10 @@ h2 {
   margin: 0;
 }
 
+h3 {
+  padding: 1%;
+}
+
 #city {
   border:5px solid rgb(78, 102, 103);
   padding: 0 4%;
@@ -50,13 +54,15 @@ h4 .weather-icon {
 
 #container {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 .day {
   background-color: rgb(134, 194, 235);
   padding: 5px 20px;
-  margin: 0 1%;
+  margin: 0.5% 1%;
+  flex-grow: 1;
 }
 
 #left {
