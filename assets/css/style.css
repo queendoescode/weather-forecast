@@ -16,10 +16,31 @@ h1 {
   margin: 0;
 }
 
+h2 {
+  margin: 0;
+}
+
 #city {
   border:5px solid rgb(78, 102, 103);
-  padding: 2% 4%;
+  padding: 0 4%;
   margin: 0 1%;
+}
+
+.weather-icon {
+  position: relative;
+  top: 15px;
+  width: 50px;
+}
+
+h4 {
+  white-space: nowrap;
+  margin: 0;
+}
+
+h4 .weather-icon {
+  position: relative;
+  top: 8px;
+  width: 30px;
 }
 
 #layout {

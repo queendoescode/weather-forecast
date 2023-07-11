@@ -8,7 +8,7 @@ This is an application that helps to retrieve weather forecast data for cities u
 
 ## Screenshots
 
-![A screenshot of the weather forecast application](./Screenshot%202023-07-10%20at%2011.41.20%20PM.png)
+![A screenshot of the weather forecast application](screenshot.png)
 
 ## Links
 

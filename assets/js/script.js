@@ -7,7 +7,7 @@ var apiUrlFiveDay = "https://api.openweathermap.org/data/2.5/forecast";
 
 var apiUrlCurrent = "https://api.openweathermap.org/data/2.5/weather";
 
-var myDateFormat = "ddd M/D/YYYY";
+var myDateFormat = "M/D/YYYY";
 
 var storageKey = "city-search-history";
 
@@ -34,11 +34,13 @@ function getCurrentWeatherPromise(cityName) {
 }
 
 function getWeatherForCity(cityName) {
-  var cityHeadingElement = document.querySelector("#city h2");
+  var cityHeadingElement = document.querySelector("#city h2 .city-name");
+  var dateElement = document.querySelector("#city h2 .date");
 
   var tempElement = document.querySelector("#city .temp");
   var humidityElement = document.querySelector("#city .humidity");
   var windElement = document.querySelector("#city .wind");
+  var iconElement = document.querySelector("#city .weather-icon");
 
 
   getCurrentWeatherPromise(cityName)
@@ -46,10 +48,13 @@ function getWeatherForCity(cityName) {
         if (response.ok) {
           return response.json().then( data => {
             cityHeadingElement.textContent = cityName;
+            var cityDate = dayjs.unix(data.dt);
+            dateElement.textContent = cityDate.format(myDateFormat);
             
             tempElement.textContent = data.main.temp + " °C";
             humidityElement.textContent = data.main.humidity + " %";
             windElement.textContent = data.wind.speed + " km/h";
+            iconElement.setAttribute("src", `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`)
             searchError.textContent = "";
             inputEl.value = "";
           });
@@ -81,18 +86,22 @@ function getWeatherForCity(cityName) {
             }
 
             for (var day = 0; day < 5; day++) {
-              var dateHeading = document.querySelector(`#day-${day} h4`);
+              var dateHeading = document.querySelector(`#day-${day} .date`);
               var tempElement = document.querySelector(`#day-${day} .temp`);
               var humidityElement = document.querySelector(`#day-${day} .humidity`);
               var windElement = document.querySelector(`#day-${day} .wind`);
+              var iconElement = document.querySelector(`#day-${day} .weather-icon`);
+              var dayOfWeekEl = document.querySelector(`#day-${day} .day-of-week`);
 
               var forecast = data.list[day * 8 + index];
               tempElement.textContent = forecast.main.temp + " °C";
               humidityElement.textContent = forecast.main.humidity + " %";
               windElement.textContent = forecast.wind.speed + " km/h";
+              iconElement.setAttribute("src", `https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png`)
 
               var date = dayjs(forecast.dt_txt);
               dateHeading.textContent = date.format(myDateFormat);
+              dayOfWeekEl.textContent = date.format("ddd");
             }
           });
         }
