@@ -80,16 +80,13 @@ function getWeatherForCity(cityName) {
               }
             }
 
-            console.log(index)
-
-            for (var forecastIndex = index; forecastIndex < 40; forecastIndex++) {
-              var day = Math.floor((forecastIndex - index) / 8);
+            for (var day = 0; day < 5; day++) {
               var dateHeading = document.querySelector(`#day-${day} h4`);
               var tempElement = document.querySelector(`#day-${day} .temp`);
               var humidityElement = document.querySelector(`#day-${day} .humidity`);
               var windElement = document.querySelector(`#day-${day} .wind`);
 
-              var forecast = data.list[forecastIndex];
+              var forecast = data.list[day * 8 + index];
               tempElement.textContent = forecast.main.temp + " °C";
               humidityElement.textContent = forecast.main.humidity + " %";
               windElement.textContent = forecast.wind.speed + " km/h";

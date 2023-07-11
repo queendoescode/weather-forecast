@@ -18,12 +18,13 @@ h1 {
 
 #city {
   border:5px solid rgb(78, 102, 103);
-  padding: 5px 20px;
+  padding: 2% 4%;
+  margin: 0 1%;
 }
 
 #layout {
   display: flex;
-
+  padding: 0 5%;
 }
 
 #container {
@@ -34,6 +35,7 @@ h1 {
 .day {
   background-color: rgb(134, 194, 235);
   padding: 5px 20px;
+  margin: 0 1%;
 }
 
 #left {
@@ -45,7 +47,16 @@ h1 {
   width: 80%;
 }
 
-button, input {
+input {
+  display: block;
+  width: 93%;
+  margin: 8px 0px;
+  padding: 3%;
+  font-size: 100%;
+  border-radius: 9px;
+}
+
+button {
   display: block;
   width: 100%;
   margin: 8px 0px;
